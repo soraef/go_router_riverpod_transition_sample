@@ -17,7 +17,7 @@ final routerProvider = Provider(
         path: "/todos",
         builder: (context, state) {
           return TodoListPage(
-            onLoading: () => ref.read(todoListPageController.notifier).load(),
+            onLoad: () => ref.read(todoListPageController.notifier).load(),
             onDisposed: () => ref.read(todoListPageController.notifier).clear(),
           );
         },

@@ -6,15 +6,15 @@ typedef TransitionResult = Future<Result<void, Exception>>;
 class PageRoot extends StatefulWidget {
   const PageRoot({
     super.key,
-    required this.onLoading,
-    required this.onDisposed,
+    required this.onLoad,
+    required this.onDispose,
     required this.success,
     required this.loading,
     required this.failure,
   });
 
-  final TransitionResult Function() onLoading;
-  final VoidCallback onDisposed;
+  final TransitionResult Function() onLoad;
+  final VoidCallback onDispose;
   final Widget Function(BuildContext context) success;
   final Widget Function(BuildContext context) loading;
   final Widget Function(BuildContext context, Exception exception) failure;
@@ -31,7 +31,7 @@ class _PageRootState extends State<PageRoot> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       setState(() {
-        result = widget.onLoading();
+        result = widget.onLoad();
       });
     });
   }
@@ -39,7 +39,7 @@ class _PageRootState extends State<PageRoot> {
   @override
   void dispose() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      widget.onDisposed();
+      widget.onDispose();
     });
     super.dispose();
   }

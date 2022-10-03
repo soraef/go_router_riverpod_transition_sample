@@ -7,11 +7,11 @@ import 'todo_list_page_controller.dart';
 class TodoListPage extends ConsumerWidget {
   const TodoListPage({
     super.key,
-    required this.onLoading,
+    required this.onLoad,
     required this.onDisposed,
   });
 
-  final TransitionResult Function() onLoading;
+  final TransitionResult Function() onLoad;
   final VoidCallback onDisposed;
 
   @override
@@ -19,8 +19,8 @@ class TodoListPage extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(title: const Text("Todo")),
       body: PageRoot(
-        onLoading: onLoading,
-        onDisposed: onDisposed,
+        onLoad: onLoad,
+        onDispose: onDisposed,
         success: (context) => const TodoListView(),
         loading: (context) => const Center(
           child: CircularProgressIndicator(),
