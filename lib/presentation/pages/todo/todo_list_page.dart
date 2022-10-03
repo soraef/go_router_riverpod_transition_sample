@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:go_router_riverpod_transition_sample/presentation/pages/todo/todos_page_controller.dart';
 import 'package:go_router_riverpod_transition_sample/presentation/shared/page_root.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class TodosListPage extends ConsumerWidget {
-  const TodosListPage({
+import 'todo_list_page_controller.dart';
+
+class TodoListPage extends ConsumerWidget {
+  const TodoListPage({
     super.key,
     required this.onLoading,
     required this.onDisposed,
@@ -37,7 +38,7 @@ class TodoListView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final todos = ref.watch(todosPageController);
+    final todos = ref.watch(todoListPageController);
     return ListView(
       children: todos
           .map(

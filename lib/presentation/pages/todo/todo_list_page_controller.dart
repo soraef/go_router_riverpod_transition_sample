@@ -7,13 +7,13 @@ class Todo {
   Todo(this.name);
 }
 
-final todosPageController =
-    StateNotifierProvider<TodosPageController, List<Todo>>(
-  (ref) => TodosPageController([]),
+final todoListPageController =
+    StateNotifierProvider<TodoListPageController, List<Todo>>(
+  (ref) => TodoListPageController([]),
 );
 
-class TodosPageController extends StateNotifier<List<Todo>> {
-  TodosPageController(super.state);
+class TodoListPageController extends StateNotifier<List<Todo>> {
+  TodoListPageController(super.state);
 
   Future<Result<void, Exception>> load() async {
     // loading delay
