@@ -9,6 +9,7 @@ I define GoRouter using provider.
 This allows riverpod ref to be used in the routing definition.
 
 ```dart
+
 final routerProvider = Provider(
   (ref) => GoRouter(
     routes: [
@@ -22,8 +23,8 @@ final routerProvider = Provider(
         path: "/todos",
         builder: (context, state) {
           return TodoListPage(
-            onLoading: () => ref.read(todoPageController.notifier).load(),
-            onDisposed: () => ref.read(todoPageController.notifier).clear(),
+            onLoad: () => ref.read(todoListPageController.notifier).load(),
+            onDisposed: () => ref.read(todoListPageController.notifier).clear(),
           );
         },
       )
@@ -43,26 +44,23 @@ class TodoListPage extends ConsumerWidget {
   const TodoListPage({
     super.key,
     required this.onLoad,
-    required this.onDispose,
+    required this.onDisposed,
   });
 
   final TransitionResult Function() onLoad;
-  final VoidCallback onDispose;
+  final VoidCallback onDisposed;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(title: const Text("Todo")),
       body: PageRoot(
-        onLoading: onLoad,
-        onDisposed: onDispose,
+        onLoad: onLoad,
+        onDispose: onDisposed,
         success: (context) => const TodoListView(),
-        loading: (context) => const Center(
-          child: CircularProgressIndicator(),
-        ),
-        failure: (context, exception) => Center(
-          child: Text(exception.toString()),
-        ),
+        loading: (context) => const Center(child: CircularProgressIndicator()),
+        failure: (context, exception) =>
+            Center(child: Text(exception.toString())),
       ),
     );
   }

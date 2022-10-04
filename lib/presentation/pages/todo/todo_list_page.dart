@@ -22,12 +22,9 @@ class TodoListPage extends ConsumerWidget {
         onLoad: onLoad,
         onDispose: onDisposed,
         success: (context) => const TodoListView(),
-        loading: (context) => const Center(
-          child: CircularProgressIndicator(),
-        ),
-        failure: (context, exception) => Center(
-          child: Text(exception.toString()),
-        ),
+        loading: (context) => const Center(child: CircularProgressIndicator()),
+        failure: (context, exception) =>
+            Center(child: Text(exception.toString())),
       ),
     );
   }
